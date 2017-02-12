@@ -21,14 +21,40 @@ If you were given a DVD of your MRI data, make a copy of the data and store the 
 
 ### Data in an archiving database
 
-[XNAT](#xnat)  | [PACS](#pacs)
+<button onclick="PACS()">Click here if your MRI facility uses a PACS system</button> <button onclick="XNAT()">Click here if your MRI facility uses an XNAT system</button>
 
-#### XNAT ([https://wiki.xnat.org/documentation/how-to-use-xnat/how-to-download-image-data-from-xnat-projects](https://wiki.xnat.org/documentation/how-to-use-xnat/how-to-download-image-data-from-xnat-projects))
+{::options parse_block_html="true" /}
 
-
-#### PACS
-
+<div id="PACS">
+#### PACS here!
 Instructions specific to the BCCH MRI Research PACS can be found [here]({{ _extras }}/bcchr-pacs/).
+</div>
+
+<div id="XNAT">
+#### XNAT here!
+[XNAT](https://wiki.xnat.org/documentation/how-to-use-xnat/how-to-download-image-data-from-xnat-projects)
+</div>
+
+<script>
+function PACS() {
+    var x = document.getElementById('PACS');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function XNAT() {
+    var x = document.getElementById('XNAT');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+</script>
+
 
 
 ## What kind of data do you get?
@@ -46,17 +72,18 @@ Once you have downloaded your data, you will have a directory (aka folder) that 
 
 There are several good, free data conversion utilities available on the web that will convert the MRI data from the native scanner format to ANALYZE or NIFTI. Check out the dcm2nii webpage, which also lists several alternatives and the MRIconvert webpage. SPM and Brainvoyager have built-in solutions to convert DICOM data into a format specific for those packages. 
 
+
 One important thing to realize when using third party tools is that they may change the original data in an unpredictable manner. For example, the orientation of left and right in the image may be flipped in an inappropriate manner, which may even be different for different MRI sequences that were obtained on the same scanner. Make sure to verify the image orientation before starting an experiment or its analysis. This can be easily verified by sticking a vitamin E capsule in the headcoil in a predetermined location.
 
 ### MRI convert
 
-[`MRI convert`](http://lcni.uoregon.edu/downloads/mriconvert/mriconvert-and-mcverter) will convert data from SIEMENS, PHILIPS and GE scanners to various forms of NIFTI and ANALYZE format. The application is freely available and runs on Windows, Mac OsX and Linux. If DICOM to NIFTI does not work for you, chances are high that MRI convert will.
+[`MRI convert`](http://lcni.uoregon.edu/downloads/mriconvert/mriconvert-and-mcverter) will convert data from SIEMENS, PHILIPS and GE scanners to various forms of NIFTI and ANALYZE format. The application is freely available and runs on Windows, Mac OsX and Linux. 
 
 ### Other tools
 
 #### DICOM to NIFTI
 
-[`Dcm2nii`](http://www.cabiatl.com/mricro/mricron/dcm2nii.html) is a very complete DICOM and Philips PAR/REC converter that will run on Windows, linux and Mac OsX. Dcm2nii is provided as part of an image viewer package called MRIcron. This package is free to download and use and probably your best bet if you do not have an inhouse solution to convert medical images to NIFTI format.
+[`dcm2nii`](http://www.cabiatl.com/mricro/mricron/dcm2nii.html) is a very complete DICOM and Philips PAR/REC converter that will run on Windows, linux and Mac OsX. Dcm2nii is provided as part of an image viewer package called MRIcron. This package is free to download and use and probably your best bet if you do not have an inhouse solution to convert medical images to NIFTI format.
 
 #### SPM + Matlab
 
